@@ -29,7 +29,7 @@ var data1 = Buffer.from("hello")
 var data2 = Buffer.from("world")
 
 //sending multiple msg
-client.send([data1, data2], 3000, "127.0.0.1", function(error) {
+client.send([data1, data2], 80, "157.230.39.47", function(error) {
       if (error) {
             client.close()
       } else {
