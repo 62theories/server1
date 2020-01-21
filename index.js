@@ -1,16 +1,26 @@
-const express = require("express")
-const cors = require("cors")
-const app = express()
+var buffer = require("buffer")
+var udp = require("dgram")
+// creating a client socket
+var client = udp.createSocket("udp4")
 
-app.use(cors())
+//buffer msg
+var data = Buffer.from("siddheshrane")
 
-app.get("/", (req, res) => {
-      res.send({
-            hello: "there"
-      })
+client.on("message", function(msg, info) {
+      console.log("Data received from server : " + msg.toString())
+      console.log(
+            "Received %d bytes from %s:%d\n",
+            msg.length,
+            info.address,
+            info.port
+      )
 })
 
-const PORT = process.env.PORT || 5000
-app.listen(PORT, () => {
-      console.log("server on port:", PORT)
+//sending msg
+client.send(data, 3000, "localhost", function(error) {
+      if (error) {
+            client.close()
+      } else {
+            console.log("Data sent !!!")
+      }
 })
