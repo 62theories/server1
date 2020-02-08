@@ -15,37 +15,41 @@
 //       console.log("server on port:", PORT)
 // })
 
-// const WebSocket = require("ws")
-// const wss = new WebSocket.Server({ port: 3000 })
+const WebSocket = require("ws")
+const wss = new WebSocket.Server({ port: 3000 })
 
-// wss.on("connection", function connection(ws) {
-//       ws.on("message", function incoming(message) {
-//             console.log("received: %s", message)
-//       })
+wss.on("connection", function connection(ws) {
+      ws.on("message", function incoming(message) {
+            console.log("received: %s", message)
+      })
+})
+
+wss.on("close", function close() {
+      console.log("disconnected")
+})
+
+// const dgram = require("dgram")
+// const server = dgram.createSocket("udp4")
+
+// server.on("error", err => {
+//       console.log(`server error:\n${err.stack}`)
+//       server.close()
 // })
 
-// wss.on("close", function close() {
-//       console.log("disconnected")
+// server.on("message", (msg, rinfo) => {
+//       console.log(`server got: ${msg} from ${rinfo.address}:${rinfo.port}`)
+//       console.log(msg.length)
+//       if (msg.startsWith('"probe":')) {
+//             console.log(msg.indexOf('"probe":'))
+//       }
 // })
 
-const dgram = require("dgram")
-const server = dgram.createSocket("udp4")
+// server.on("listening", () => {
+//       const address = server.address()
+//       console.log(`server listening ${address.address}:${address.port}`)
+// })
 
-server.on("error", err => {
-      console.log(`server error:\n${err.stack}`)
-      server.close()
-})
-
-server.on("message", (msg, rinfo) => {
-      console.log(`server got: ${msg} from ${rinfo.address}:${rinfo.port}`)
-})
-
-server.on("listening", () => {
-      const address = server.address()
-      console.log(`server listening ${address.address}:${address.port}`)
-})
-
-server.bind(3080)
+// server.bind(3000)
 
 // var udp = require("dgram")
 
