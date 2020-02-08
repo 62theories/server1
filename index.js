@@ -49,7 +49,7 @@ wss.on("close", function close() {
 //       console.log(`server listening ${address.address}:${address.port}`)
 // })
 
-// server.bind(3000)
+server.bind(3000)
 
 // var udp = require("dgram")
 
