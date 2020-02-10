@@ -38,7 +38,8 @@ server.on("error", err => {
 
 server.on("message", (msg, rinfo) => {
       console.log(`server got: ${msg} from ${rinfo.address}:${rinfo.port}`)
-      console.log(msg.length)
+      // console.log(msg.length)
+      console.log(JSON.parse(msg))
 })
 
 server.on("listening", () => {
