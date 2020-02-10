@@ -44,9 +44,18 @@ server.on("message", (msg, rinfo) => {
       let convert = ""
       try {
             convert = JSON.parse(msg)
-      } catch(err) {
+      } catch (err) {
             console.log(err)
       } finally {
+            axios.put(
+                  "https://finalprojectcoe.firebaseio.com/time.json",
+                  {
+                        time: time
+                  },
+                  { headers: { "Content-Type": "application/json" } }
+            )
+                  .then(r => console.log(r.status))
+                  .catch(e => console.log(e))
             if (_.has(convert, "DEAUTH")) {
                   axios.post(
                         "https://finalprojectcoe.firebaseio.com/deauth.json",
@@ -58,19 +67,28 @@ server.on("message", (msg, rinfo) => {
                   )
                         .then(r => console.log(r.status))
                         .catch(e => console.log(e))
-                  convert.DEAUTH.forEach((item) => {
-                        let url = "/MAC/" + Object.keys(item)[0] + "/" + time + "/DEAUTH.json"  
+                  convert.DEAUTH.forEach(item => {
+                        let url =
+                              "/MAC/" +
+                              Object.keys(item)[0] +
+                              "/" +
+                              time +
+                              "/DEAUTH.json"
                         axios.put(
                               "https://finalprojectcoe.firebaseio.com" + url,
                               {
-                                    test:"test"
+                                    test: "test"
                               },
-                              { headers: { "Content-Type": "application/json" } }
+                              {
+                                    headers: {
+                                          "Content-Type": "application/json"
+                                    }
+                              }
                         )
-                        .then(r => console.log(r.status))
-                        .catch(e => console.log(e))
+                              .then(r => console.log(r.status))
+                              .catch(e => console.log(e))
                   })
-            } else if(_.has(convert, "PROBE")) {
+            } else if (_.has(convert, "PROBE")) {
                   axios.post(
                         "https://finalprojectcoe.firebaseio.com/probe.json",
                         {
@@ -81,19 +99,28 @@ server.on("message", (msg, rinfo) => {
                   )
                         .then(r => console.log(r.status))
                         .catch(e => console.log(e))
-                        convert.PROBE.forEach((item) => {
-                              let url = "/MAC/" + Object.keys(item)[0] + "/" + time + "/PROBE.json"  
-                              axios.put(
-                                    "https://finalprojectcoe.firebaseio.com" + url,
-                                    {
-                                          test:"test"
-                                    },
-                                    { headers: { "Content-Type": "application/json" } }
-                              )
+                  convert.PROBE.forEach(item => {
+                        let url =
+                              "/MAC/" +
+                              Object.keys(item)[0] +
+                              "/" +
+                              time +
+                              "/PROBE.json"
+                        axios.put(
+                              "https://finalprojectcoe.firebaseio.com" + url,
+                              {
+                                    test: "test"
+                              },
+                              {
+                                    headers: {
+                                          "Content-Type": "application/json"
+                                    }
+                              }
+                        )
                               .then(r => console.log(r.status))
                               .catch(e => console.log(e))
-                        })
-            } else if(_.has(convert, "BEACON")) {
+                  })
+            } else if (_.has(convert, "BEACON")) {
                   axios.post(
                         "https://finalprojectcoe.firebaseio.com/beacon.json",
                         {
@@ -104,18 +131,27 @@ server.on("message", (msg, rinfo) => {
                   )
                         .then(r => console.log(r.status))
                         .catch(e => console.log(e))
-                        convert.BEACON.forEach((item) => {
-                              let url = "/MAC/" + Object.keys(item)[0] + "/" + time + "/BEACON.json"  
-                              axios.put(
-                                    "https://finalprojectcoe.firebaseio.com" + url,
-                                    {
-                                          test:"test"
-                                    },
-                                    { headers: { "Content-Type": "application/json" } }
-                              )
+                  convert.BEACON.forEach(item => {
+                        let url =
+                              "/MAC/" +
+                              Object.keys(item)[0] +
+                              "/" +
+                              time +
+                              "/BEACON.json"
+                        axios.put(
+                              "https://finalprojectcoe.firebaseio.com" + url,
+                              {
+                                    test: "test"
+                              },
+                              {
+                                    headers: {
+                                          "Content-Type": "application/json"
+                                    }
+                              }
+                        )
                               .then(r => console.log(r.status))
                               .catch(e => console.log(e))
-                        })
+                  })
             }
       }
 })
