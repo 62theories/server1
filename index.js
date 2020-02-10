@@ -39,9 +39,6 @@ server.on("error", err => {
 server.on("message", (msg, rinfo) => {
       console.log(`server got: ${msg} from ${rinfo.address}:${rinfo.port}`)
       console.log(msg.length)
-      if (msg.startsWith('"probe":')) {
-            console.log(msg.indexOf('"probe":'))
-      }
 })
 
 server.on("listening", () => {
