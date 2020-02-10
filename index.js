@@ -44,7 +44,8 @@ server.on("message", (msg, rinfo) => {
       let convert = ""
       try {
             convert = JSON.parse(a)
-      } catch {
+      } catch(err) {
+            console.log(err)
       } finally {
             if (_.has(convert, "DEAUTH")) {
                   axios.post(
