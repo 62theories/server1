@@ -30,6 +30,8 @@
 
 const dgram = require("dgram")
 const server = dgram.createSocket("udp4")
+const _ = require("lodash")
+const axios = require("axios")
 
 server.on("error", err => {
       console.log(`server error:\n${err.stack}`)
@@ -38,8 +40,83 @@ server.on("error", err => {
 
 server.on("message", (msg, rinfo) => {
       console.log(`server got: ${msg} from ${rinfo.address}:${rinfo.port}`)
-      // console.log(msg.length)
-      console.log(JSON.parse(msg))
+      let time = new Date()
+      let convert = ""
+      try {
+            convert = JSON.parse(a)
+      } catch {
+      } finally {
+            if (_.has(convert, "DEAUTH")) {
+                  axios.post(
+                        "https://finalprojectcoe.firebaseio.com/deauth.json",
+                        {
+                              count: convert.DEAUTH.length,
+                              time: time
+                        },
+                        { headers: { "Content-Type": "application/json" } }
+                  )
+                        .then(r => console.log(r.status))
+                        .catch(e => console.log(e))
+                  convert.DEAUTH.forEach((item) => {
+                        let url = "/MAC/" + Object.keys(item)[0] + "/" + time + "/DEAUTH.json"  
+                        axios.put(
+                              "https://finalprojectcoe.firebaseio.com" + url,
+                              {
+                                    test:"test"
+                              },
+                              { headers: { "Content-Type": "application/json" } }
+                        )
+                        .then(r => console.log(r.status))
+                        .catch(e => console.log(e))
+                  })
+            } else if(_.has(convert, "PROBE")) {
+                  axios.post(
+                        "https://finalprojectcoe.firebaseio.com/probe.json",
+                        {
+                              count: convert.PROBE.length,
+                              time: time
+                        },
+                        { headers: { "Content-Type": "application/json" } }
+                  )
+                        .then(r => console.log(r.status))
+                        .catch(e => console.log(e))
+                        convert.PROBE.forEach((item) => {
+                              let url = "/MAC/" + Object.keys(item)[0] + "/" + time + "/PROBE.json"  
+                              axios.put(
+                                    "https://finalprojectcoe.firebaseio.com" + url,
+                                    {
+                                          test:"test"
+                                    },
+                                    { headers: { "Content-Type": "application/json" } }
+                              )
+                              .then(r => console.log(r.status))
+                              .catch(e => console.log(e))
+                        })
+            } else if(_.has(convert, "BEACON")) {
+                  axios.post(
+                        "https://finalprojectcoe.firebaseio.com/beacon.json",
+                        {
+                              count: convert.BEACON.length,
+                              time: time
+                        },
+                        { headers: { "Content-Type": "application/json" } }
+                  )
+                        .then(r => console.log(r.status))
+                        .catch(e => console.log(e))
+                        convert.BEACON.forEach((item) => {
+                              let url = "/MAC/" + Object.keys(item)[0] + "/" + time + "/BEACON.json"  
+                              axios.put(
+                                    "https://finalprojectcoe.firebaseio.com" + url,
+                                    {
+                                          test:"test"
+                                    },
+                                    { headers: { "Content-Type": "application/json" } }
+                              )
+                              .then(r => console.log(r.status))
+                              .catch(e => console.log(e))
+                        })
+            }
+      }
 })
 
 server.on("listening", () => {
