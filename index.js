@@ -43,7 +43,7 @@ server.on("message", (msg, rinfo) => {
       let time = new Date()
       let convert = ""
       try {
-            convert = JSON.parse(a)
+            convert = JSON.parse(msg)
       } catch(err) {
             console.log(err)
       } finally {
