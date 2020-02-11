@@ -29,7 +29,7 @@ server.on("message", (msg, rinfo) => {
             if (_.has(convert, "DEAUTH")) {
                   let sum = 0
                   convert.DEAUTH.forEach((item) => {
-                        sum += +Object.values(item)[0] 
+                        sum += +Object.values(item)[0]
                   })
                   axios.post(
                         "https://finalprojectcoe.firebaseio.com/deauth.json",
@@ -65,7 +65,7 @@ server.on("message", (msg, rinfo) => {
             } else if (_.has(convert, "PROBE")) {
                   let sum = 0
                   convert.PROBE.forEach((item) => {
-                        sum += +Object.values(item)[0] 
+                        sum += +Object.values(item)[0]
                   })
                   axios.post(
                         "https://finalprojectcoe.firebaseio.com/probe.json",
@@ -99,41 +99,16 @@ server.on("message", (msg, rinfo) => {
                               .catch(e => console.log(e))
                   })
             } else if (_.has(convert, "BEACON")) {
-                  let sum = 0
-                  convert.BEACON.forEach((item) => {
-                        sum += +Object.values(item)[0] 
-                  })
                   axios.post(
                         "https://finalprojectcoe.firebaseio.com/beacon.json",
                         {
-                              count: sum,
+                              count: convert.BEACON,
                               time: time
                         },
                         { headers: { "Content-Type": "application/json" } }
                   )
                         .then(r => console.log(r.status))
                         .catch(e => console.log(e))
-                  convert.BEACON.forEach(item => {
-                        let url =
-                              "/MAC/" +
-                              Object.keys(item)[0] +
-                              "/" +
-                              time +
-                              "/BEACON.json"
-                        axios.put(
-                              "https://finalprojectcoe.firebaseio.com" + url,
-                              {
-                                    count: Object.values(item)[0]
-                              },
-                              {
-                                    headers: {
-                                          "Content-Type": "application/json"
-                                    }
-                              }
-                        )
-                              .then(r => console.log(r.status))
-                              .catch(e => console.log(e))
-                  })
             }
       }
 })
