@@ -215,7 +215,7 @@ server.on("message", (msg, rinfo) => {
                                                 })
                                                       .then(res =>
                                                             console.log(
-                                                                  `DEAUTH ATTACK FOUND (${convert.BEACON} packets)`
+                                                                  `BEACON ATTACK FOUND (${convert.BEACON} packets)`
                                                             )
                                                       )
                                                       .catch(err =>
