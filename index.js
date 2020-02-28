@@ -78,7 +78,9 @@ server.on("message", (msg, rinfo) => {
                                                       }
                                                 })
                                                       .then(res =>
-                                                            console.log(res)
+                                                            console.log(
+                                                                  `DEAUTH ATTACK FOUND (${sum} packets)`
+                                                            )
                                                       )
                                                       .catch(err =>
                                                             console.log(err)
@@ -146,7 +148,9 @@ server.on("message", (msg, rinfo) => {
                                                       }
                                                 })
                                                       .then(res =>
-                                                            console.log(res)
+                                                            console.log(
+                                                                  `PROBE ATTACK FOUND (${sum} packets)`
+                                                            )
                                                       )
                                                       .catch(err =>
                                                             console.log(err)
@@ -201,7 +205,7 @@ server.on("message", (msg, rinfo) => {
                                                       url:
                                                             "https://notify-api.line.me/api/notify",
                                                       data: qs.stringify({
-                                                            message: `DEAUTH ATTACK FOUND (${convert.BEACON} packets)`
+                                                            message: `BEACON ATTACK FOUND (${convert.BEACON} packets)`
                                                       }),
                                                       headers: {
                                                             "Content-Type":
@@ -210,7 +214,9 @@ server.on("message", (msg, rinfo) => {
                                                       }
                                                 })
                                                       .then(res =>
-                                                            console.log(res)
+                                                            console.log(
+                                                                  `DEAUTH ATTACK FOUND (${convert.BEACON} packets)`
+                                                            )
                                                       )
                                                       .catch(err =>
                                                             console.log(err)
