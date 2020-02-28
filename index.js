@@ -39,7 +39,13 @@ server.on("message", (msg, rinfo) => {
                   },
                   { headers: { "Content-Type": "application/json" } }
             )
-                  .then(r => console.log(r.status))
+                  .then(r =>
+                        console.log(
+                              `SENT ${{
+                                    time: time
+                              }} to https://finalprojectcoe.firebaseio.com/time.json`
+                        )
+                  )
                   .catch(e => console.log(e))
             if (_.has(convert, "DEAUTH")) {
                   let sum = 0
@@ -55,6 +61,12 @@ server.on("message", (msg, rinfo) => {
                         { headers: { "Content-Type": "application/json" } }
                   )
                         .then(r => {
+                              console.log(
+                                    `SENT to ${{
+                                          count: sum,
+                                          time: time
+                                    }} https://finalprojectcoe.firebaseio.com/deauth.json`
+                              )
                               axios.get(
                                     "https://finalprojectcoe.firebaseio.com/d.json"
                               )
@@ -108,7 +120,14 @@ server.on("message", (msg, rinfo) => {
                                     }
                               }
                         )
-                              .then(r => console.log(r.status))
+                              .then(r =>
+                                    console.log(
+                                          `SENT ${{
+                                                count: Object.values(item)[0]
+                                          }} to ${"https://finalprojectcoe.firebaseio.com" +
+                                                url}`
+                                    )
+                              )
                               .catch(e => console.log(e))
                   })
             } else if (_.has(convert, "PROBE")) {
@@ -125,6 +144,12 @@ server.on("message", (msg, rinfo) => {
                         { headers: { "Content-Type": "application/json" } }
                   )
                         .then(r => {
+                              console.log(
+                                    `SENT ${{
+                                          count: sum,
+                                          time: time
+                                    }} to https://finalprojectcoe.firebaseio.com/probe.json`
+                              )
                               axios.get(
                                     "https://finalprojectcoe.firebaseio.com/d.json"
                               )
@@ -178,7 +203,14 @@ server.on("message", (msg, rinfo) => {
                                     }
                               }
                         )
-                              .then(r => console.log(r.status))
+                              .then(r =>
+                                    console.log(
+                                          `SENT ${{
+                                                count: Object.values(item)[0]
+                                          }} to ${"https://finalprojectcoe.firebaseio.com" +
+                                                url}`
+                                    )
+                              )
                               .catch(e => console.log(e))
                   })
             } else if (_.has(convert, "BEACON")) {
@@ -191,6 +223,12 @@ server.on("message", (msg, rinfo) => {
                         { headers: { "Content-Type": "application/json" } }
                   )
                         .then(r => {
+                              console.log(
+                                    `SENT ${{
+                                          count: convert.BEACON,
+                                          time: time
+                                    }} to https://finalprojectcoe.firebaseio.com/beacon.json`
+                              )
                               axios.get(
                                     "https://finalprojectcoe.firebaseio.com/d.json"
                               )
