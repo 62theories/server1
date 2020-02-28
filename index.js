@@ -2,6 +2,21 @@ const dgram = require("dgram")
 const server = dgram.createSocket("udp4")
 const _ = require("lodash")
 const axios = require("axios")
+const qs = require("querystring")
+
+// axios.request({
+//       method: "POST",
+//       url: "https://notify-api.line.me/api/notify",
+//       data: qs.stringify({
+//             message: "ok"
+//       }),
+//       headers: {
+//             "Content-Type": "application/x-www-form-urlencoded",
+//             Authorization: `Bearer S5V1TfvbIQxTCaSLF0KyIJPNS8FndGyi6goUwrI6Evs`
+//       }
+// })
+//       .then(res => console.log(res))
+//       .catch(err => console.log(err))
 
 server.on("error", err => {
       console.log(`server error:\n${err.stack}`)
@@ -28,7 +43,7 @@ server.on("message", (msg, rinfo) => {
                   .catch(e => console.log(e))
             if (_.has(convert, "DEAUTH")) {
                   let sum = 0
-                  convert.DEAUTH.forEach((item) => {
+                  convert.DEAUTH.forEach(item => {
                         sum += +Object.values(item)[0]
                   })
                   axios.post(
@@ -39,7 +54,39 @@ server.on("message", (msg, rinfo) => {
                         },
                         { headers: { "Content-Type": "application/json" } }
                   )
-                        .then(r => console.log(r.status))
+                        .then(r => {
+                              axios.get(
+                                    "https://finalprojectcoe.firebaseio.com/d.json"
+                              )
+                                    .then(r => {
+                                          if (
+                                                r.data &&
+                                                r.data !== 0 &&
+                                                sum > r.data
+                                          ) {
+                                                axios.request({
+                                                      method: "POST",
+                                                      url:
+                                                            "https://notify-api.line.me/api/notify",
+                                                      data: qs.stringify({
+                                                            message: `DEAUTH ATTACK FOUND (${sum} packets)`
+                                                      }),
+                                                      headers: {
+                                                            "Content-Type":
+                                                                  "application/x-www-form-urlencoded",
+                                                            Authorization: `Bearer S5V1TfvbIQxTCaSLF0KyIJPNS8FndGyi6goUwrI6Evs`
+                                                      }
+                                                })
+                                                      .then(res =>
+                                                            console.log(res)
+                                                      )
+                                                      .catch(err =>
+                                                            console.log(err)
+                                                      )
+                                          }
+                                    })
+                                    .catch(err => console.log(err))
+                        })
                         .catch(e => console.log(e))
                   convert.DEAUTH.forEach(item => {
                         let url =
@@ -64,7 +111,7 @@ server.on("message", (msg, rinfo) => {
                   })
             } else if (_.has(convert, "PROBE")) {
                   let sum = 0
-                  convert.PROBE.forEach((item) => {
+                  convert.PROBE.forEach(item => {
                         sum += +Object.values(item)[0]
                   })
                   axios.post(
@@ -75,7 +122,39 @@ server.on("message", (msg, rinfo) => {
                         },
                         { headers: { "Content-Type": "application/json" } }
                   )
-                        .then(r => console.log(r.status))
+                        .then(r => {
+                              axios.get(
+                                    "https://finalprojectcoe.firebaseio.com/d.json"
+                              )
+                                    .then(r => {
+                                          if (
+                                                r.data &&
+                                                r.data !== 0 &&
+                                                sum > r.data
+                                          ) {
+                                                axios.request({
+                                                      method: "POST",
+                                                      url:
+                                                            "https://notify-api.line.me/api/notify",
+                                                      data: qs.stringify({
+                                                            message: `PROBE ATTACK FOUND (${sum} packets)`
+                                                      }),
+                                                      headers: {
+                                                            "Content-Type":
+                                                                  "application/x-www-form-urlencoded",
+                                                            Authorization: `Bearer S5V1TfvbIQxTCaSLF0KyIJPNS8FndGyi6goUwrI6Evs`
+                                                      }
+                                                })
+                                                      .then(res =>
+                                                            console.log(res)
+                                                      )
+                                                      .catch(err =>
+                                                            console.log(err)
+                                                      )
+                                          }
+                                    })
+                                    .catch(err => console.log(err))
+                        })
                         .catch(e => console.log(e))
                   convert.PROBE.forEach(item => {
                         let url =
@@ -107,7 +186,39 @@ server.on("message", (msg, rinfo) => {
                         },
                         { headers: { "Content-Type": "application/json" } }
                   )
-                        .then(r => console.log(r.status))
+                        .then(r => {
+                              axios.get(
+                                    "https://finalprojectcoe.firebaseio.com/d.json"
+                              )
+                                    .then(r => {
+                                          if (
+                                                r.data &&
+                                                r.data !== 0 &&
+                                                convert.BEACON > r.data
+                                          ) {
+                                                axios.request({
+                                                      method: "POST",
+                                                      url:
+                                                            "https://notify-api.line.me/api/notify",
+                                                      data: qs.stringify({
+                                                            message: `DEAUTH ATTACK FOUND (${convert.BEACON} packets)`
+                                                      }),
+                                                      headers: {
+                                                            "Content-Type":
+                                                                  "application/x-www-form-urlencoded",
+                                                            Authorization: `Bearer S5V1TfvbIQxTCaSLF0KyIJPNS8FndGyi6goUwrI6Evs`
+                                                      }
+                                                })
+                                                      .then(res =>
+                                                            console.log(res)
+                                                      )
+                                                      .catch(err =>
+                                                            console.log(err)
+                                                      )
+                                          }
+                                    })
+                                    .catch(err => console.log(err))
+                        })
                         .catch(e => console.log(e))
             }
       }
