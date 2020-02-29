@@ -4,20 +4,6 @@ const _ = require("lodash")
 const axios = require("axios")
 const qs = require("querystring")
 
-// axios.request({
-//       method: "POST",
-//       url: "https://notify-api.line.me/api/notify",
-//       data: qs.stringify({
-//             message: "ok"
-//       }),
-//       headers: {
-//             "Content-Type": "application/x-www-form-urlencoded",
-//             Authorization: `Bearer S5V1TfvbIQxTCaSLF0KyIJPNS8FndGyi6goUwrI6Evs`
-//       }
-// })
-//       .then(res => console.log(res))
-//       .catch(err => console.log(err))
-
 server.on("error", err => {
       console.log(`server error:\n${err.stack}`)
       server.close()
@@ -233,6 +219,15 @@ server.on("message", (msg, rinfo) => {
                                     "https://finalprojectcoe.firebaseio.com/d.json"
                               )
                                     .then(r => {
+                                          console.log(
+                                                "convert.BEACON",
+                                                convert.BEACON
+                                          )
+                                          console.log("r.data", r.data)
+                                          console.log(
+                                                "convert.BEACON > r.data",
+                                                convert.BEACON > r.data
+                                          )
                                           if (
                                                 r.data &&
                                                 r.data !== 0 &&
