@@ -39,7 +39,7 @@ server.on("message", (msg, rinfo) => {
                   axios.post(
                         "https://finalprojectcoe.firebaseio.com/deauth.json",
                         {
-                              count: convert.DEAUTH,
+                              count: +convert.DEAUTH,
                               time: time,
                         },
                         { headers: { "Content-Type": "application/json" } }
@@ -53,7 +53,7 @@ server.on("message", (msg, rinfo) => {
                   axios.post(
                         "https://finalprojectcoe.firebaseio.com/probe.json",
                         {
-                              count: convert.PROBE,
+                              count: +convert.PROBE,
                               time: time,
                         },
                         { headers: { "Content-Type": "application/json" } }
@@ -67,7 +67,7 @@ server.on("message", (msg, rinfo) => {
                   axios.post(
                         "https://finalprojectcoe.firebaseio.com/beacon.json",
                         {
-                              count: convert.BEACON,
+                              count: +convert.BEACON,
                               time: time,
                         },
                         { headers: { "Content-Type": "application/json" } }
