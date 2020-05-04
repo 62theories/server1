@@ -18,23 +18,6 @@ server.on("message", (msg, rinfo) => {
       } catch (err) {
             console.log(err)
       } finally {
-            // axios.post(
-            //       "https://finalprojectcoe.firebaseio.com/time.json",
-            //       {
-            //             [time]: convert,
-            //       },
-            //       { headers: { "Content-Type": "application/json" } }
-            // )
-            //       .then((r) =>
-            //             console.log(
-            //                   `SENT to https://finalprojectcoe.firebaseio.com/time.json`
-            //             )
-            //       )
-            //       .catch((e) => console.log(e))
-            // if (_.has(convert, "DEAUTH")) {
-            // } else if (_.has(convert, "PROBE")) {
-            // } else if (_.has(convert, "BEACON")) {
-            // }
             if (convert.DEAUTH || convert.DEAUTH === 0) {
                   axios.post(
                         "https://finalprojectcoe.firebaseio.com/deauth.json",
@@ -48,6 +31,26 @@ server.on("message", (msg, rinfo) => {
                               "SENT to https://finalprojectcoe.firebaseio.com/deauth.json"
                         )
                   )
+                  axios.get(
+                        "https://finalprojectcoe.firebaseio.com/alert/deauth.json"
+                  ).then((alertFetch) => {
+                        const { data } = alertFetch
+                        if (data && +convert.DEAUTH > data) {
+                              axios.request({
+                                    method: "POST",
+                                    url:
+                                          "https://notify-api.line.me/api/notify",
+                                    data: qs.stringify({
+                                          message: `DEAUTH ATTACK FOUND (${+convert.DEAUTH} packets)`,
+                                    }),
+                                    headers: {
+                                          "Content-Type":
+                                                "application/x-www-form-urlencoded",
+                                          Authorization: `Bearer S5V1TfvbIQxTCaSLF0KyIJPNS8FndGyi6goUwrI6Evs`,
+                                    },
+                              })
+                        }
+                  })
             }
             if (convert.PROBE || convert.PROBE === 0) {
                   axios.post(
@@ -62,6 +65,26 @@ server.on("message", (msg, rinfo) => {
                               "SENT to https://finalprojectcoe.firebaseio.com/probe.json"
                         )
                   )
+                  axios.get(
+                        "https://finalprojectcoe.firebaseio.com/alert/probe.json"
+                  ).then((alertFetch) => {
+                        const { data } = alertFetch
+                        if (data && +convert.PROBE > data) {
+                              axios.request({
+                                    method: "POST",
+                                    url:
+                                          "https://notify-api.line.me/api/notify",
+                                    data: qs.stringify({
+                                          message: `PROBE ATTACK FOUND (${+convert.PROBE} packets)`,
+                                    }),
+                                    headers: {
+                                          "Content-Type":
+                                                "application/x-www-form-urlencoded",
+                                          Authorization: `Bearer S5V1TfvbIQxTCaSLF0KyIJPNS8FndGyi6goUwrI6Evs`,
+                                    },
+                              })
+                        }
+                  })
             }
             if (convert.BEACON || convert.BEACON === 0) {
                   axios.post(
@@ -76,6 +99,26 @@ server.on("message", (msg, rinfo) => {
                               "SENT to https://finalprojectcoe.firebaseio.com/beacon.json"
                         )
                   )
+                  axios.get(
+                        "https://finalprojectcoe.firebaseio.com/alert/beacon.json"
+                  ).then((alertFetch) => {
+                        const { data } = alertFetch
+                        if (data && +convert.BEACON > data) {
+                              axios.request({
+                                    method: "POST",
+                                    url:
+                                          "https://notify-api.line.me/api/notify",
+                                    data: qs.stringify({
+                                          message: `beacon ATTACK FOUND (${+convert.BEACON} packets)`,
+                                    }),
+                                    headers: {
+                                          "Content-Type":
+                                                "application/x-www-form-urlencoded",
+                                          Authorization: `Bearer S5V1TfvbIQxTCaSLF0KyIJPNS8FndGyi6goUwrI6Evs`,
+                                    },
+                              })
+                        }
+                  })
             }
       }
 })
