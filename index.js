@@ -49,6 +49,18 @@ server.on("message", (msg, rinfo) => {
                                           Authorization: `Bearer S5V1TfvbIQxTCaSLF0KyIJPNS8FndGyi6goUwrI6Evs`,
                                     },
                               })
+                              axios.post(
+                                    "https://finalprojectcoe.firebaseio.com/notification/deauth.js",
+                                    {
+                                          time: time,
+                                    },
+                                    {
+                                          headers: {
+                                                "Content-Type":
+                                                      "application/json",
+                                          },
+                                    }
+                              )
                         }
                   })
             }
@@ -83,6 +95,18 @@ server.on("message", (msg, rinfo) => {
                                           Authorization: `Bearer S5V1TfvbIQxTCaSLF0KyIJPNS8FndGyi6goUwrI6Evs`,
                                     },
                               })
+                              axios.post(
+                                    "https://finalprojectcoe.firebaseio.com/notification/probe.js",
+                                    {
+                                          time: time,
+                                    },
+                                    {
+                                          headers: {
+                                                "Content-Type":
+                                                      "application/json",
+                                          },
+                                    }
+                              )
                         }
                   })
             }
@@ -117,6 +141,18 @@ server.on("message", (msg, rinfo) => {
                                           Authorization: `Bearer S5V1TfvbIQxTCaSLF0KyIJPNS8FndGyi6goUwrI6Evs`,
                                     },
                               })
+                              axios.post(
+                                    "https://finalprojectcoe.firebaseio.com/notification/beacon.js",
+                                    {
+                                          time: time,
+                                    },
+                                    {
+                                          headers: {
+                                                "Content-Type":
+                                                      "application/json",
+                                          },
+                                    }
+                              )
                         }
                   })
             }
