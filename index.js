@@ -52,6 +52,7 @@ server.on("message", (msg, rinfo) => {
                               axios.post(
                                     "https://finalprojectcoe.firebaseio.com/notification/deauth.json",
                                     {
+                                          count: +convert.DEAUTH,
                                           time: time,
                                     },
                                     {
@@ -98,6 +99,7 @@ server.on("message", (msg, rinfo) => {
                               axios.post(
                                     "https://finalprojectcoe.firebaseio.com/notification/probe.json",
                                     {
+                                          count: +convert.PROBE,
                                           time: time,
                                     },
                                     {
@@ -144,6 +146,7 @@ server.on("message", (msg, rinfo) => {
                               axios.post(
                                     "https://finalprojectcoe.firebaseio.com/notification/beacon.json",
                                     {
+                                          count: +convert.BEACON,
                                           time: time,
                                     },
                                     {
