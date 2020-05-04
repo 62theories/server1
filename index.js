@@ -18,23 +18,23 @@ server.on("message", (msg, rinfo) => {
       } catch (err) {
             console.log(err)
       } finally {
-            // axios.put(
-            //       "https://finalprojectcoe.firebaseio.com/time.json",
-            //       {
-            //             time: time,
-            //       },
-            //       { headers: { "Content-Type": "application/json" } }
-            // )
-            //       .then((r) =>
-            //             console.log(
-            //                   `SENT to https://finalprojectcoe.firebaseio.com/time.json`
-            //             )
-            //       )
-            //       .catch((e) => console.log(e))
-            // if (_.has(convert, "DEAUTH")) {
-            // } else if (_.has(convert, "PROBE")) {
-            // } else if (_.has(convert, "BEACON")) {
-            // }
+            axios.post(
+                  "https://finalprojectcoe.firebaseio.com/time.json",
+                  {
+                        [time]: convert,
+                  },
+                  { headers: { "Content-Type": "application/json" } }
+            )
+                  .then((r) =>
+                        console.log(
+                              `SENT to https://finalprojectcoe.firebaseio.com/time.json`
+                        )
+                  )
+                  .catch((e) => console.log(e))
+            if (_.has(convert, "DEAUTH")) {
+            } else if (_.has(convert, "PROBE")) {
+            } else if (_.has(convert, "BEACON")) {
+            }
       }
 })
 
