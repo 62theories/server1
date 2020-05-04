@@ -18,22 +18,64 @@ server.on("message", (msg, rinfo) => {
       } catch (err) {
             console.log(err)
       } finally {
-            axios.post(
-                  "https://finalprojectcoe.firebaseio.com/time.json",
-                  {
-                        [time]: convert,
-                  },
-                  { headers: { "Content-Type": "application/json" } }
-            )
-                  .then((r) =>
+            // axios.post(
+            //       "https://finalprojectcoe.firebaseio.com/time.json",
+            //       {
+            //             [time]: convert,
+            //       },
+            //       { headers: { "Content-Type": "application/json" } }
+            // )
+            //       .then((r) =>
+            //             console.log(
+            //                   `SENT to https://finalprojectcoe.firebaseio.com/time.json`
+            //             )
+            //       )
+            //       .catch((e) => console.log(e))
+            // if (_.has(convert, "DEAUTH")) {
+            // } else if (_.has(convert, "PROBE")) {
+            // } else if (_.has(convert, "BEACON")) {
+            // }
+            if (convert.DEAUTH || convert.DEAUTH === 0) {
+                  axios.post(
+                        "https://finalprojectcoe.firebaseio.com/deauth.json",
+                        {
+                              count: convert.DEAUTH,
+                              time: time,
+                        },
+                        { headers: { "Content-Type": "application/json" } }
+                  ).then(() =>
                         console.log(
-                              `SENT to https://finalprojectcoe.firebaseio.com/time.json`
+                              "SENT to https://finalprojectcoe.firebaseio.com/deauth.json"
                         )
                   )
-                  .catch((e) => console.log(e))
-            if (_.has(convert, "DEAUTH")) {
-            } else if (_.has(convert, "PROBE")) {
-            } else if (_.has(convert, "BEACON")) {
+            }
+            if (convert.PROBE || convert.PROBE === 0) {
+                  axios.post(
+                        "https://finalprojectcoe.firebaseio.com/probe.json",
+                        {
+                              count: convert.PROBE,
+                              time: time,
+                        },
+                        { headers: { "Content-Type": "application/json" } }
+                  ).then(() =>
+                        console.log(
+                              "SENT to https://finalprojectcoe.firebaseio.com/probe.json"
+                        )
+                  )
+            }
+            if (convert.BEACON || convert.BEACON === 0) {
+                  axios.post(
+                        "https://finalprojectcoe.firebaseio.com/beacon.json",
+                        {
+                              count: convert.BEACON,
+                              time: time,
+                        },
+                        { headers: { "Content-Type": "application/json" } }
+                  ).then(() =>
+                        console.log(
+                              "SENT to https://finalprojectcoe.firebaseio.com/beacon.json"
+                        )
+                  )
             }
       }
 })
