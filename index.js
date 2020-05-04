@@ -50,7 +50,7 @@ server.on("message", (msg, rinfo) => {
                                     },
                               })
                               axios.post(
-                                    "https://finalprojectcoe.firebaseio.com/notification/deauth.js",
+                                    "https://finalprojectcoe.firebaseio.com/notification/deauth.json",
                                     {
                                           time: time,
                                     },
@@ -96,7 +96,7 @@ server.on("message", (msg, rinfo) => {
                                     },
                               })
                               axios.post(
-                                    "https://finalprojectcoe.firebaseio.com/notification/probe.js",
+                                    "https://finalprojectcoe.firebaseio.com/notification/probe.json",
                                     {
                                           time: time,
                                     },
@@ -142,7 +142,7 @@ server.on("message", (msg, rinfo) => {
                                     },
                               })
                               axios.post(
-                                    "https://finalprojectcoe.firebaseio.com/notification/beacon.js",
+                                    "https://finalprojectcoe.firebaseio.com/notification/beacon.json",
                                     {
                                           time: time,
                                     },
