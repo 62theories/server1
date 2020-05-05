@@ -162,7 +162,7 @@ server.on("message", (msg, rinfo) => {
             if (convert.MACDEAUTH) {
                   if (Array.isArray(convert.MACDEAUTH)) {
                         convert.MACDEAUTH.forEach((item) => {
-                              axios.post(
+                              axios.put(
                                     `https://finalprojectcoe.firebaseio.com/mac/${Object.keys(
                                           item
                                     )}/deauth.json`,
@@ -183,7 +183,7 @@ server.on("message", (msg, rinfo) => {
             if (convert.MACPROBE) {
                   if (Array.isArray(convert.MACPROBE)) {
                         convert.MACPROBE.forEach((item) => {
-                              axios.patch(
+                              axios.put(
                                     `https://finalprojectcoe.firebaseio.com/mac/${Object.keys(
                                           item
                                     )}/probe.json`,
