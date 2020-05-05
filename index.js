@@ -166,7 +166,7 @@ server.on("message", (msg, rinfo) => {
                                           item
                                     )}/${time}.json`,
                                     {
-                                          deauth: Object.values(item),
+                                          deauth: +Object.values(item),
                                     },
                                     {
                                           headers: {
@@ -186,7 +186,7 @@ server.on("message", (msg, rinfo) => {
                                           item
                                     )}/${time}.json`,
                                     {
-                                          probe: Object.values(item),
+                                          probe: +Object.values(item),
                                     },
                                     {
                                           headers: {
