@@ -162,12 +162,13 @@ server.on("message", (msg, rinfo) => {
             if (convert.MACDEAUTH) {
                   if (Array.isArray(convert.MACDEAUTH)) {
                         convert.MACDEAUTH.forEach((item) => {
-                              axios.patch(
+                              axios.post(
                                     `https://finalprojectcoe.firebaseio.com/mac/${Object.keys(
                                           item
-                                    )}/${time}.json`,
+                                    )}/deauth.json`,
                                     {
-                                          deauth: +Object.values(item),
+                                          count: +Object.values(item),
+                                          tine: time,
                                     },
                                     {
                                           headers: {
@@ -185,9 +186,10 @@ server.on("message", (msg, rinfo) => {
                               axios.patch(
                                     `https://finalprojectcoe.firebaseio.com/mac/${Object.keys(
                                           item
-                                    )}/${time}.json`,
+                                    )}/probe.json`,
                                     {
                                           probe: +Object.values(item),
+                                          time: time,
                                     },
                                     {
                                           headers: {
