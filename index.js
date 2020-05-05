@@ -188,7 +188,7 @@ server.on("message", (msg, rinfo) => {
                                           item
                                     )}/probe.json`,
                                     {
-                                          probe: +Object.values(item),
+                                          count: +Object.values(item),
                                           time: time,
                                     },
                                     {
