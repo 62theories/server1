@@ -168,7 +168,7 @@ server.on("message", (msg, rinfo) => {
                                     )}/deauth.json`,
                                     {
                                           count: +Object.values(item),
-                                          tine: time,
+                                          time: time,
                                     },
                                     {
                                           headers: {
