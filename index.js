@@ -10,6 +10,7 @@ server.on("error", (err) => {
 })
 
 server.on("message", (msg, rinfo) => {
+      console.log("server got " + msg)
       let time = new Date()
       let convert = ""
       try {
