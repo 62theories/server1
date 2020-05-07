@@ -18,7 +18,7 @@ server.on("message", (msg, rinfo) => {
       } catch (err) {
             console.log(err)
       } finally {
-            axios.post(
+            axios.put(
                   "https://finalprojectcoe.firebaseio.com/time.json",
                   {
                         time: time,
