@@ -18,13 +18,6 @@ server.on("message", (msg, rinfo) => {
       } catch (err) {
             console.log(err)
       } finally {
-            axios.put(
-                  "https://finalprojectcoe.firebaseio.com/time.json",
-                  {
-                        time: time,
-                  },
-                  { headers: { "Content-Type": "application/json" } }
-            )
             if (convert.DEAUTH || convert.DEAUTH === 0) {
                   axios.post(
                         "https://finalprojectcoe.firebaseio.com/deauth.json",
