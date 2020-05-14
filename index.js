@@ -211,3 +211,4 @@ server.on("listening", () => {
 })
 
 server.bind(3000)
+require("./report")
